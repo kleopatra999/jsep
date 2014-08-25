@@ -1784,9 +1784,47 @@ candidate:1 1 UDP 1694498815 192.0.2.33 10000 typ host
         </section>
       </section>
 
-      <section title="Parsing an Offer" anchor="sec.parsing-an-offer"></section>
+      <section title="Parsing an Offer" anchor="sec.parsing-an-offer">
+        <t>When a SessionDescription of type "offer" is supplied to 
+        setLocal/RemoteDescription, the implementation must parse it and
+        reject it if it is invalid. The exact details of this
+        process are explained below.</t>
+        <t>First, the session-level lines are checked. For each line defined in
+            ..., it MUST be handled in one of three ways. MUST be syntactically valid.
+            <list type="symbols">
+                <t>PARSE: The line MUST be present, and the values will be 
+                    parsed out.</t>
+                <t>CHECK: The line MUST be present and , but the values will be discarded.</t>
+                <t>IGNORE: The line MAY be present, but the values will be discarded.</t>
+            </list>
+        </t>
+        <t>
+            The lines MUST occur in the following order, as specified in ....
+            and should be handled according to this 
+            <list type="symbols">
+                <t>The first line MUST be a v= line, as specified in ...</t>
+                <t>The second line MUST be an o= line, as specified in...
+                The contents must be ...</t>
+                <t>The third line MUST be a s= line, as specified in...
+                Assuming the syntax is correct, the contents of this line 
+                MUST be ignored.</t>
+                <t>Any i=, e=, u=, or p= lines MUST be ignored.</t>
+                <t>The next line MUST be a c= line, as specified in...</t>
+                <t>The next line MUST be a t= line, as specified in...</t>
 
-      <section title="Parsing an Answer" anchor="sec.parsing-an-answer"></section>
+      </section>
+      <section title="Parsing an Answer" anchor="sec.parsing-an-answer">
+        <t>When a SessionDescription of type "answer" is supplied to 
+        setLocal/RemoteDescription, the implementation must parse it and
+        reject it if it is invalid. To do this, the steps described in
+        <xref target="sec.parsing-an-offer"></xref> are followed, along with
+        these additional checks:
+        <list type="symbols"> 
+            <t>Check that the signaling state machine???</t>
+            <t></t>
+        </list>
+        </t>
+      </section>
 
       <section title="Applying a Local Description" anchor="sec.applying-a-local-descript"></section>
 
